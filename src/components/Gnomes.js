@@ -52,6 +52,41 @@ const parseNumber = (field, numberString) =>
 const stringContainsPhrase =
 	(string, phraseToCheck) => string.trim().toLowerCase().indexOf(phraseToCheck.toLowerCase()) >= 0;
 
+const handleFilter = (filterSettings, field, visibleGnomes) => {
+	const numbersFilterIndex = NUMBERS.indexOf(field);
+	let filteredVisibleGnomes = visibleGnomes;
+
+	if (STRINGS.indexOf(field) >= 0) {
+		filteredVisibleGnomes = visibleGnomes.filter(
+			gnome => stringContainsPhrase(gnome[field], filterSettings[field])
+		);
+	} else if (numbersFilterIndex >= 0 && IGNORE_END_RANGES.indexOf(field) === -1) {
+		if (field.indexOf('Range') >= 0) {
+			const startRange = parseNumber(field, filterSettings[field]);
+			const endRangeField = NUMBERS[numbersFilterIndex + 1];
+			const endRange = parseNumber(endRangeField, filterSettings[endRangeField]);
+			const fieldToRangeCompare = field.split('Start')[0];
+
+			filteredVisibleGnomes =
+				visibleGnomes.filter(gnome =>
+					gnome[fieldToRangeCompare] >= startRange && gnome[fieldToRangeCompare] <= endRange
+				);
+		} else {
+			filteredVisibleGnomes =
+				visibleGnomes.filter(gnome => gnome[field] === parseNumber(field, filterSettings[field]));
+		}
+	} else if (STRING_ARRAYS.indexOf(field) >= 0) {
+		filteredVisibleGnomes = visibleGnomes.filter(gnome => {
+			const filteredGnomeData =
+				gnome[field].filter(gnomeData => stringContainsPhrase(gnomeData, filterSettings[field]));
+
+			return filteredGnomeData.length > 0;
+		});
+	}
+
+	return filteredVisibleGnomes;
+};
+
 export default class Gnomes extends React.Component {
 	constructor(props) {
 		super(props);
@@ -62,48 +97,13 @@ export default class Gnomes extends React.Component {
 		};
 	}
 
-	handleFilter = (filterSettings, field, visibleGnomes) => {
-		const numbersFilterIndex = NUMBERS.indexOf(field);
-		let filteredVisibleGnomes = visibleGnomes;
-
-		if (STRINGS.indexOf(field) >= 0) {
-			filteredVisibleGnomes = visibleGnomes.filter(
-				gnome => stringContainsPhrase(gnome[field], filterSettings[field])
-			);
-		} else if (numbersFilterIndex >= 0 && IGNORE_END_RANGES.indexOf(field) === -1) {
-			if (field.indexOf('Range') >= 0) {
-				const startRange = parseNumber(field, filterSettings[field]);
-				const endRangeField = NUMBERS[numbersFilterIndex + 1];
-				const endRange = parseNumber(endRangeField, filterSettings[endRangeField]);
-				const fieldToRangeCompare = field.split('Start')[0];
-
-				filteredVisibleGnomes =
-					visibleGnomes.filter(gnome =>
-						gnome[fieldToRangeCompare] >= startRange && gnome[fieldToRangeCompare] <= endRange
-					);
-			} else {
-				filteredVisibleGnomes =
-					visibleGnomes.filter(gnome => gnome[field] === parseNumber(field, filterSettings[field]));
-			}
-		} else if (STRING_ARRAYS.indexOf(field) >= 0) {
-			filteredVisibleGnomes = visibleGnomes.filter(gnome => {
-				const filteredGnomeData =
-					gnome[field].filter(gnomeData => stringContainsPhrase(gnomeData, filterSettings[field]));
-
-				return filteredGnomeData.length > 0;
-			});
-		}
-
-		return filteredVisibleGnomes;
-	}
-
 	filterGnomes = filterSettings => {
 		const { gnomes } = this.state;
 		let visibleGnomes = gnomes;
 
 		FILTER_ORDER.filter(field => filterSettings[field])
 			.forEach(field => {
-				visibleGnomes = this.handleFilter(filterSettings, field, visibleGnomes);
+				visibleGnomes = handleFilter(filterSettings, field, visibleGnomes);
 			});
 
 		this.setState({ visibleGnomes });
