@@ -23,7 +23,7 @@ npm start
 
 Your browser should automatically open with the page of the app. Otherwise, it should be accessed by opening http://localhost:3000/ in your browser as long as the dependencies are properly installed.
 
-## Description
+## Description
 
 This is an app that lists all the registered gnomes in the town of Bristlewark. Moreover, the user can search for a single gnome or multiple gnomes in particular using the filter tools provided in the page.
 
@@ -36,5 +36,6 @@ Aside from being case insensitive, the filters work with a heirarchy of priority
 6. A profession that a gnome may have
 7. Name of another gnome that a gnome might be friends with
 
-## Running Tests
+## Running tests
+
 *Coming soon*
