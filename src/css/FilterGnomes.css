@@ -1,0 +1,19 @@
+/*
+ * Created on Thu Feb 27 2020
+ * Author: Gio Justiniano
+ * More info: https://github.com/giomikee/
+ *
+ * Copyright (c) 2020
+ */
+
+.filter_gnomes {
+    margin: 15px auto;
+}
+
+.filter_gnomes__container {
+    text-align: center;
+}
+
+.filter_gnomes__container input:not([type='reset']) {
+    width: 70%;
+}

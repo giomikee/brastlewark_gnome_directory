@@ -1,0 +1,35 @@
+/*
+ * Created on Thu Feb 27 2020
+ * Author: Gio Justiniano
+ * More info: https://github.com/giomikee/
+ *
+ * Copyright (c) 2020
+ */
+
+.gnome {
+    margin: 15px;
+}
+
+.thumbnail {
+    float: right;
+    border-radius: 5px;
+    height: 100px;
+    width: 100px;
+}
+
+.gnome__name {
+    float: left;
+    width: 60%;
+}
+
+.gnome__other-details {
+    display: inline-block;
+}
+
+.gnome__detail-list {
+    margin: 5px;
+}
+
+.gnome__detail {
+    font-weight: bold;
+}
