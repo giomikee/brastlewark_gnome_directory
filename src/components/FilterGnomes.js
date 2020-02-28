@@ -69,7 +69,7 @@ export default class FilterGnomes extends React.Component {
 	render() {
 		return (
 			<div className='bordered_box filter_gnomes'>
-				{/* <h2>Filter Gnomes</h2> */}
+				<h2>Filter Gnomes</h2>
 				<form className='filter_gnomes__container' onSubmit={this.handleSubmit} onReset={this.handleReset}>
 					<FilterString stringType='name' formElementsProperties={STRING_FORM_ELEMENTS_PROPERTIES.name} />
 					<FilterNumber numberType='age' />
