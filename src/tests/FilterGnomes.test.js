@@ -11,8 +11,8 @@ import { render } from '@testing-library/react';
 import FilterGnomes from '../components/FilterGnomes';
 
 test('renders Gnome filter tool in document', () => {
-	const { container } = render(<FilterGnomes />);
-	const gnomesFilter = container.querySelector('.filter_gnomes__container');
+	const { getAllByText } = render(<FilterGnomes />);
+	const gnomesFilter = getAllByText(/Filter Gnomes/);
 
-	expect(gnomesFilter).toBeInTheDocument();
+	expect(gnomesFilter.length).toBeGreaterThan(0);
 });
