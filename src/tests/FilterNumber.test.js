@@ -12,8 +12,8 @@ import FilterNumber from '../components/FilterNumber';
 
 test('renders number filters for mocked number type', () => {
 	const mockedNumberType = 'mockedType';
-	const { getAllByText } = render(<FilterNumber numberType={mockedNumberType}/>);
-	const numberFilterElements = getAllByText(new RegExp(mockedNumberType));
+	const { getByPlaceholderText } = render(<FilterNumber numberType={mockedNumberType}/>);
+	const numberFilterElements = getByPlaceholderText(new RegExp(mockedNumberType));
 
-	expect(numberFilterElements.length).toBeGreaterThan(0);
+	expect(numberFilterElements).toBeInTheDocument();
 });
