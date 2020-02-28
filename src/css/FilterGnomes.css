@@ -10,10 +10,10 @@
     margin: 15px auto;
 }
 
-.filter_gnomes__container {
+.filter_gnomes__container, h2 {
     text-align: center;
 }
 
-.filter_gnomes__container input:not([type='reset']) {
+.filter_gnomes__container input:not(.form_buttons) {
     width: 70%;
 }
