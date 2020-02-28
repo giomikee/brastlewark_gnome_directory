@@ -38,7 +38,7 @@ Aside from being case insensitive, the filters work with a heirarchy of priority
 
 ## Running tests
 
-To run the project's tests, go into the it's root directory and after that run `npm test` 
+To run the project's tests, go into the its root directory and after that run `npm test` 
 ```bash
 cd brastlewark_gnome_directory && npm test
 ```
