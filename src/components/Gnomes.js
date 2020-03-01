@@ -114,7 +114,7 @@ export default class Gnomes extends React.Component {
 
 		return (
 			<div>
-				<FilterGnomes onSubmit={this.filterGnomes} />
+				<FilterGnomes onChange={this.filterGnomes} />
 				<div className="gnomes_container">
 					{visibleGnomes.map(gnome => <Gnome gnome={gnome} key={gnome.id} />)}
 				</div>
