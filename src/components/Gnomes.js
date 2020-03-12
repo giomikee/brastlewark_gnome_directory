@@ -93,7 +93,8 @@ export default class Gnomes extends React.Component {
 
 		this.state = {
 			gnomes: this.props.gnomes,
-			visibleGnomes: this.props.gnomes
+			visibleGnomes: this.props.gnomes,
+			sliceArguments: [0, 10]
 		};
 	}
 
@@ -109,14 +110,31 @@ export default class Gnomes extends React.Component {
 		this.setState({ visibleGnomes });
 	}
 
+	groupVisibleGnomes = event => {
+		const modifySlice = event.target.value === 'next' ? 10 : -10;
+		const sliceArguments = this.state.sliceArguments.map(arg => arg + modifySlice);
+
+		this.setState({ sliceArguments });
+	}
+
 	render() {
-		const { visibleGnomes } = this.state;
+		const { visibleGnomes, sliceArguments } = this.state;
 
 		return (
 			<div>
 				<FilterGnomes onChange={this.filterGnomes} />
+				<button value='previous'
+					onClick={this.groupVisibleGnomes}
+					disabled={sliceArguments[0] === 0}>
+						Previous 10
+				</button>
+				<button value='next'
+					onClick={this.groupVisibleGnomes}
+					disabled={sliceArguments[1] >= visibleGnomes.length - 1}>
+						Next 10
+				</button>
 				<div className="gnomes_container">
-					{visibleGnomes.map(gnome => <Gnome gnome={gnome} key={gnome.id} />)}
+					{visibleGnomes.slice(...sliceArguments).map(gnome => <Gnome gnome={gnome} key={gnome.id} />)}
 				</div>
 			</div>
 		);
