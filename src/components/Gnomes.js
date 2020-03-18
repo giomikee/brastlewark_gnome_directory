@@ -10,6 +10,7 @@
 import React from 'react';
 import FilterGnomes from './FilterGnomes';
 import Gnome from './Gnome';
+import NavigationButton from './NavigationButton';
 import '../css/Gnomes.css';
 
 const STRINGS = [
@@ -111,28 +112,61 @@ export default class Gnomes extends React.Component {
 	}
 
 	groupVisibleGnomes = event => {
-		const modifySlice = event.target.value === 'next' ? 10 : -10;
-		const sliceArguments = this.state.sliceArguments.map(arg => arg + modifySlice);
+		const button = event.target.value;
+		let sliceArguments;
+
+		if (button === 'first') {
+			sliceArguments = [0, 10];
+		} else if (button === 'last') {
+			const { visibleGnomes } = this.state;
+
+			sliceArguments = [
+				visibleGnomes.length - 10,
+				visibleGnomes.length
+			];
+		} else {
+			const modifySlice = event.target.value === 'next' ? 10 : -10;
+
+			sliceArguments = this.state.sliceArguments.map(arg => arg + modifySlice);
+			sliceArguments[0] = sliceArguments[0] < 0 ? 0 : sliceArguments[0];
+			sliceArguments[1] = sliceArguments[1] < 10 ? 10 : sliceArguments[1];
+		}
 
 		this.setState({ sliceArguments });
 	}
 
 	render() {
-		const { visibleGnomes, sliceArguments } = this.state;
+		const { visibleGnomes, sliceArguments } = this.state,
+			arePreviousButtonsDisabled = sliceArguments[0] === 0,
+			areNextButtonsDisabled = sliceArguments[1] >= visibleGnomes.length;
 
 		return (
 			<div>
 				<FilterGnomes onChange={this.filterGnomes} />
-				<button value='previous'
+				<NavigationButton
+					value='first'
 					onClick={this.groupVisibleGnomes}
-					disabled={sliceArguments[0] === 0}>
+					isDisabled={arePreviousButtonsDisabled}>
+						First 10
+				</NavigationButton>
+				<NavigationButton
+					value='previous'
+					onClick={this.groupVisibleGnomes}
+					isDisabled={arePreviousButtonsDisabled}>
 						Previous 10
-				</button>
-				<button value='next'
+				</NavigationButton>
+				<NavigationButton
+					value='next'
 					onClick={this.groupVisibleGnomes}
-					disabled={sliceArguments[1] >= visibleGnomes.length - 1}>
+					isDisabled={areNextButtonsDisabled}>
 						Next 10
-				</button>
+				</NavigationButton>
+				<NavigationButton
+					value='last'
+					onClick={this.groupVisibleGnomes}
+					isDisabled={areNextButtonsDisabled}>
+						Last 10
+				</NavigationButton>
 				<div className="gnomes_container">
 					{visibleGnomes.slice(...sliceArguments).map(gnome => <Gnome gnome={gnome} key={gnome.id} />)}
 				</div>
