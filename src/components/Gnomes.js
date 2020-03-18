@@ -143,11 +143,6 @@ export default class Gnomes extends React.Component {
 		return (
 			<div>
 				<FilterGnomes onChange={this.filterGnomes} />
-				{/* <button value='first'
-					onClick={this.groupVisibleGnomes}
-					disabled={sliceArguments[0] === 0}>
-						First 10
-				</button> */}
 				<NavigationButton
 					value='first'
 					onClick={this.groupVisibleGnomes}
