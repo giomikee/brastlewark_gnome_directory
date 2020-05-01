@@ -1,6 +1,6 @@
-# Bristlewark Gnome Directory
+# Brastlewark Gnome Directory
 
-Welcome to the Bristlewark town's Gnomes directory. Here you can see a full list of all registered Gnomes in the town of Bristlewark
+Welcome to the Brastlewark town's Gnomes directory. Here you can see a full list of all registered Gnomes in the town of Brastlewark
 
 *Coded with ReactJS ES6*
 
