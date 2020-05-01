@@ -6,6 +6,12 @@ Welcome to the Bristlewark town's Gnomes directory. Here you can see a full list
 
 ## Getting Started
 
+### In production
+
+Try out the application in production by opening https://giomikee.github.io/brastlewark_gnome_directory/
+
+### In Local
+
 Clone the repository to your machine by running:
 ```bash
 git clone https://github.com/giomikee/brastlewark_gnome_directory
