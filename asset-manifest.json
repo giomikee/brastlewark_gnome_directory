@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/brastlewark_gnome_directory/static/css/main.eef850d1.chunk.css",
+    "main.js": "/brastlewark_gnome_directory/static/js/main.af0ef2f8.chunk.js",
+    "main.js.map": "/brastlewark_gnome_directory/static/js/main.af0ef2f8.chunk.js.map",
+    "runtime-main.js": "/brastlewark_gnome_directory/static/js/runtime-main.896a1fb4.js",
+    "runtime-main.js.map": "/brastlewark_gnome_directory/static/js/runtime-main.896a1fb4.js.map",
+    "static/js/2.0644a93a.chunk.js": "/brastlewark_gnome_directory/static/js/2.0644a93a.chunk.js",
+    "static/js/2.0644a93a.chunk.js.map": "/brastlewark_gnome_directory/static/js/2.0644a93a.chunk.js.map",
+    "index.html": "/brastlewark_gnome_directory/index.html",
+    "precache-manifest.6a90e66b906b03cb76fbf146dca34db8.js": "/brastlewark_gnome_directory/precache-manifest.6a90e66b906b03cb76fbf146dca34db8.js",
+    "service-worker.js": "/brastlewark_gnome_directory/service-worker.js",
+    "static/css/main.eef850d1.chunk.css.map": "/brastlewark_gnome_directory/static/css/main.eef850d1.chunk.css.map",
+    "static/js/2.0644a93a.chunk.js.LICENSE.txt": "/brastlewark_gnome_directory/static/js/2.0644a93a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.896a1fb4.js",
+    "static/js/2.0644a93a.chunk.js",
+    "static/css/main.eef850d1.chunk.css",
+    "static/js/main.af0ef2f8.chunk.js"
+  ]
+}
